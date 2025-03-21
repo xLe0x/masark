@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import {
   FormControl,
   FormGroup,
@@ -17,6 +17,8 @@ import { StorageService } from '../../../../shared/services/storage.service';
   styles: [],
 })
 export class LoginComponent {
+  isLoading = signal(false);
+
   private authService = inject(AuthService);
   private toastService = inject(ToastService);
   private router = inject(Router);
@@ -34,12 +36,17 @@ export class LoginComponent {
 
   onSubmit() {
     if (this.loginForm.invalid) return;
+    this.isLoading.set(true);
     this.authService.login(this.loginForm.getRawValue()).subscribe({
       next: (res: LoginResponse) => {
+        this.isLoading.set(false);
         this.toastService.showToast('تم تسجيل الدخول بنجاح', 'success');
         // this.router.navigateByUrl('/home');
         console.log(res.token);
         this.storageService.set('token', res.token);
+      },
+      error: () => {
+        this.isLoading.set(false);
       },
     });
   }

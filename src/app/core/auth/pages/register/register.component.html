@@ -35,6 +35,12 @@
         />
         <p class="fieldset-label text-lg">يجب أن تحتوي علي 6 أحرف علي الأقل</p>
       </fieldset>
+      @if (isLoading()) {
+      <button class="btn btn-warning btn-block mt-4 text-lg">
+        <span class="loading loading-spinner"></span>
+        جاري الإرسال
+      </button>
+      } @else {
       <button
         class="btn btn-primary btn-block mt-4 text-lg"
         [disabled]="registerForm.invalid"
@@ -42,6 +48,7 @@
       >
         أنشئ حسابك
       </button>
+      }
     </form>
   </div>
 </main>

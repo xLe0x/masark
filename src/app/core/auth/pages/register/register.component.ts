@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import {
   FormControl,
   FormGroup,
@@ -16,6 +16,7 @@ import { AuthService } from '../../services/auth.service';
   styles: [],
 })
 export class RegisterComponent {
+  isLoading = signal(false);
   private authService = inject(AuthService);
   private toastService = inject(ToastService);
   private router = inject(Router);
@@ -36,10 +37,15 @@ export class RegisterComponent {
 
   onSubmit() {
     if (this.registerForm.invalid) return;
+    this.isLoading.set(true);
     this.authService.register(this.registerForm.getRawValue()).subscribe({
       next: () => {
         this.toastService.showToast('تم إنشاء الحساب بنجاح!', 'success');
         this.router.navigateByUrl('/auth/login');
+        this.isLoading.set(false);
+      },
+      error: () => {
+        this.isLoading.set(false);
       },
     });
   }
