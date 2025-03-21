@@ -1,0 +1,47 @@
+<main class="min-h-screen grid place-items-center">
+  <div class="container mx-auto px-4">
+    <h1 class="text-5xl font-bold mb-8">أهلا بك!</h1>
+
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="max-w-sm">
+      <fieldset class="fieldset">
+        <legend class="fieldset-legend text-xl">إسم المستخدم</legend>
+        <input
+          type="text"
+          class="input w-full text-lg"
+          formControlName="username"
+        />
+        <p class="fieldset-label text-lg">يجب أن يكون من 3 أحرف علي الأقل</p>
+      </fieldset>
+      <fieldset class="fieldset">
+        <legend class="fieldset-legend text-xl">بريدك الإلكتروني</legend>
+        <input
+          type="email"
+          class="input w-full text-lg"
+          dir="ltr"
+          formControlName="email"
+        />
+        <p class="fieldset-label text-lg">
+          يجب أن يكون من نوع gmail, outlook او yahoo
+        </p>
+      </fieldset>
+
+      <fieldset class="fieldset">
+        <legend class="fieldset-legend text-xl">كلمة المرور</legend>
+        <input
+          type="password"
+          class="input w-full text-lg"
+          dir="ltr"
+          formControlName="password"
+        />
+        <p class="fieldset-label text-lg">يجب أن تحتوي علي 6 أحرف علي الأقل</p>
+      </fieldset>
+      <button
+        class="btn btn-primary btn-block mt-4 text-lg"
+        [disabled]="registerForm.invalid"
+        [class.btn-disabled]="registerForm.invalid"
+      >
+        أنشئ حسابك
+      </button>
+    </form>
+  </div>
+</main>

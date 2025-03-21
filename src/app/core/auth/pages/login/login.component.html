@@ -1,0 +1,38 @@
+<main class="min-h-screen grid place-items-center">
+  <div class="container mx-auto px-4">
+    <h1 class="text-5xl font-bold mb-8">أهلا بك مجددا</h1>
+
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="max-w-sm">
+      <fieldset class="fieldset">
+        <legend class="fieldset-legend text-xl">بريدك الإلكتروني</legend>
+        <input
+          type="email"
+          class="input w-full text-lg"
+          dir="ltr"
+          formControlName="identifier"
+        />
+        <p class="fieldset-label text-lg">
+          يجب أن يكون من نوع gmail, outlook او yahoo
+        </p>
+      </fieldset>
+
+      <fieldset class="fieldset">
+        <legend class="fieldset-legend text-xl">كلمة المرور</legend>
+        <input
+          type="password"
+          class="input w-full text-lg"
+          dir="ltr"
+          formControlName="password"
+        />
+        <p class="fieldset-label text-lg">يجب أن تحتوي علي 6 أحرف علي الأقل</p>
+      </fieldset>
+      <button
+        class="btn btn-primary btn-block mt-4 text-lg"
+        [disabled]="loginForm.invalid"
+        [class.btn-disabled]="loginForm.invalid"
+      >
+        سجل الدخول!
+      </button>
+    </form>
+  </div>
+</main>
