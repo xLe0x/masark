@@ -40,7 +40,10 @@ export class RegisterComponent {
     this.isLoading.set(true);
     this.authService.register(this.registerForm.getRawValue()).subscribe({
       next: () => {
-        this.toastService.showToast('تم إنشاء الحساب بنجاح!', 'success');
+        this.toastService.showToast(
+          'تم إنشاء الحساب بنجاح! يمكنك الأن تسجيل الدخول',
+          'success'
+        );
         this.router.navigateByUrl('/auth/login');
         this.isLoading.set(false);
       },

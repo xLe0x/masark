@@ -10,6 +10,7 @@ import { ToastService } from '../../../../shared/services/toast.service';
 import { Router, RouterLink } from '@angular/router';
 import { LoginResponse } from '../../models/login.model';
 import { StorageService } from '../../../../shared/services/storage.service';
+import { UserService } from '../../services/user.service';
 @Component({
   selector: 'app-login',
   imports: [ReactiveFormsModule, RouterLink],
@@ -23,6 +24,7 @@ export class LoginComponent {
   private toastService = inject(ToastService);
   private router = inject(Router);
   private storageService = inject(StorageService);
+  private userService = inject(UserService);
   loginForm = new FormGroup({
     identifier: new FormControl('', {
       validators: [Validators.required, Validators.minLength(2)],
@@ -41,9 +43,10 @@ export class LoginComponent {
       next: (res: LoginResponse) => {
         this.isLoading.set(false);
         this.toastService.showToast('تم تسجيل الدخول بنجاح', 'success');
-        // this.router.navigateByUrl('/home');
-        console.log(res.token);
+        this.router.navigateByUrl('/');
+        console.log('login', res.token);
         this.storageService.set('token', res.token);
+        this.userService.updateToken(res.token);
       },
       error: () => {
         this.isLoading.set(false);

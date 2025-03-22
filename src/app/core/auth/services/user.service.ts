@@ -3,6 +3,7 @@ import {
   computed,
   inject,
   Injectable,
+  linkedSignal,
   signal,
   WritableSignal,
 } from '@angular/core';
@@ -16,28 +17,23 @@ import { environment } from '../../../../environments/environment.development';
 export class UserService {
   private http = inject(HttpClient);
   private storageService = inject(StorageService);
-  constructor() {}
 
   private _tokenSig = signal<string | null>(this.storageService.get('token'));
   private _userSig = signal<User | null>(null);
-  private fetchUser() {
-    if (!this._tokenSig()) return;
 
-    this.http
-      .get<UserResponse>(`${environment.apiUrl}/user/@me`, {
-        headers: {
-          Authorization: `Bearer ${this._tokenSig}`,
-        },
-      })
-      .subscribe({
-        next: ({ data }: UserResponse) => {
-          console.log(data);
-          this._userSig.set(data);
-        },
-      });
+  updateToken(value: string | null) {
+    this._tokenSig.set(value);
   }
 
-  isLoggedIn = computed(() => !!this._tokenSig());
+  fetchUser() {
+    return this.http.get<UserResponse>(`${environment.apiUrl}/user/@me`, {
+      headers: {
+        Authorization: `Bearer ${this._tokenSig}`,
+      },
+    });
+  }
+
+  isLoggedIn = computed(() => this._tokenSig());
 
   user(): User | null {
     return this._userSig();

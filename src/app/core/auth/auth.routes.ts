@@ -12,6 +12,7 @@ export const AuthRoutes: Routes = [
     loadComponent: () =>
       import('./pages/login/login.component').then((m) => m.LoginComponent),
   },
+
   {
     path: 'register',
     title: 'إنشاء حساب',

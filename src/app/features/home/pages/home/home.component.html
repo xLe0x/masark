@@ -1,1 +1,61 @@
+@let user = userSig();
+
 <app-navbar />
+
+<main class="min-h-screen pt-16">
+  <div class="container mx-auto my-8 px-4 sm:px-0">
+    @if(user) {
+    <!-- <h1 class="text-5xl font-bold">أهلا بك يا {{ user?.username }} 👋</h1> -->
+
+    <div class="charachter-card flex flex-col sm:flex-row gap-4">
+      @if(user.avatar) {
+      <div class="pixel-border rounded w-fit">
+        <img [src]="user?.avatar" [alt]="'character of level ' + user?.level" />
+      </div>
+      } @else {
+      <div class="skeleton h-56 w-32"></div>
+      }
+      <div
+        class="space-y-8 mt-8 sm:mt-0 flex flex-col items-start justify-between"
+      >
+        <div class="space-y-2">
+          <h2 class="text-3xl font-bold">{{ user.username }}</h2>
+          <p>المستوى: {{ user.level }}</p>
+          <p>النقاط الحالية: {{ user.xp }}</p>
+        </div>
+        <div>
+          <span>{{ user.xp }}</span>
+          <progress
+            class="progress w-36 sm:w-56 mx-2"
+            [value]="user.xp + 30"
+            [max]="user.nextLevelXp"
+          ></progress>
+          <span>{{ user.nextLevelXp }}</span>
+        </div>
+      </div>
+    </div>
+    } @else {
+    <div class="charachter-card flex flex-col sm:flex-row gap-4">
+      <div class="">
+        <div class="skeleton h-44 w-32"></div>
+      </div>
+      <div class="space-y-8 flex flex-col items-start justify-between">
+        <div class="space-y-2">
+          <h2 class="skeleton w-24 h-8"></h2>
+          <p class="skeleton w-16 h-4"></p>
+          <p class="skeleton w-16 h-4"></p>
+        </div>
+        <div class="flex items-center justify-center gap-2">
+          <p class="skeleton w-4 h-4 rounded"></p>
+          <progress
+            class="skeleton h-4 rounded progress w-56"
+            value="0"
+          ></progress>
+          <p class="skeleton w-4 h-4 rounded"></p>
+        </div>
+      </div>
+    </div>
+
+    }
+  </div>
+</main>

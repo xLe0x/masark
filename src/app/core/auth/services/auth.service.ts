@@ -8,6 +8,7 @@ import { RegisterRequest } from '../models/register.model';
 import { StorageService } from '../../../shared/services/storage.service';
 import { Router } from '@angular/router';
 import { ToastService } from '../../../shared/services/toast.service';
+import { UserService } from './user.service';
 
 @Injectable({
   providedIn: 'root',
@@ -17,6 +18,7 @@ export class AuthService {
   private storageService = inject(StorageService);
   private router = inject(Router);
   private toast = inject(ToastService);
+  private userService = inject(UserService);
   constructor() {}
 
   login({ identifier, password }: LoginRequest): Observable<LoginResponse> {
@@ -38,10 +40,8 @@ export class AuthService {
 
   logout() {
     this.storageService.remove('token');
+    this.userService.updateToken(null);
     this.router.navigateByUrl('/auth/login');
-    this.toast.showToast(
-      'تم تسجيل الخروج بنجاح الأن يمكنك تسجيل الدخول',
-      'success'
-    );
+    this.toast.showToast('تم تسجيل الخروج بنجاح', 'success');
   }
 }
