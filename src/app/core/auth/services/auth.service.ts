@@ -5,18 +5,21 @@ import { shareReplay } from 'rxjs';
 import { Observable } from 'rxjs';
 import { environment } from '../../../../environments/environment.development';
 import { RegisterRequest } from '../models/register.model';
+import { StorageService } from '../../../shared/services/storage.service';
+import { Router } from '@angular/router';
+import { ToastService } from '../../../shared/services/toast.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  private readonly http = inject(HttpClient);
+  private http = inject(HttpClient);
+  private storageService = inject(StorageService);
+  private router = inject(Router);
+  private toast = inject(ToastService);
   constructor() {}
 
-  public login({
-    identifier,
-    password,
-  }: LoginRequest): Observable<LoginResponse> {
+  login({ identifier, password }: LoginRequest): Observable<LoginResponse> {
     return this.http
       .post<LoginResponse>(`${environment.apiUrl}/auth/login`, {
         identifier,
@@ -25,11 +28,20 @@ export class AuthService {
       .pipe(shareReplay({ bufferSize: 1, refCount: true }));
   }
 
-  public register({ username, email, password }: RegisterRequest) {
+  register({ username, email, password }: RegisterRequest) {
     return this.http.post(`${environment.apiUrl}/auth/register`, {
       username,
       email,
       password,
     });
+  }
+
+  logout() {
+    this.storageService.remove('token');
+    this.router.navigateByUrl('/auth/login');
+    this.toast.showToast(
+      'تم تسجيل الخروج بنجاح الأن يمكنك تسجيل الدخول',
+      'success'
+    );
   }
 }

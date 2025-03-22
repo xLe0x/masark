@@ -1,7 +1,16 @@
 <main class="min-h-screen grid place-items-center">
   <div class="container mx-auto px-4">
-    <h1 class="text-5xl font-bold mb-8">أهلا بك!</h1>
-
+    <div class="mb-8">
+      <h1 class="text-5xl font-bold">أهلا بك</h1>
+      <p class="mt-2 font-semibold">
+        هل لديك حساب بالفعل؟
+        <a
+          routerLink="/auth/login"
+          class="underline text-base hover:opacity-70 transition-opacity"
+          >سجل الدخول الأن</a
+        >
+      </p>
+    </div>
     <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="max-w-sm">
       <fieldset class="fieldset">
         <legend class="fieldset-legend text-xl">إسم المستخدم</legend>

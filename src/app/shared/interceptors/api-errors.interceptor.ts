@@ -11,13 +11,27 @@ export const apiErrorsInterceptor: HttpInterceptorFn = (req, next) => {
       const { error } = httpError;
       if (error.errors) {
         error.errors.forEach((err: any) => {
+          // console.log(err);
           toastService.showToast(err.msg, 'error');
         });
       }
 
-      // check if the user is offline
+      if (error.error) {
+        toastService.showToast(error.message, 'error');
+      }
+
       if (httpError.status === 0) {
-        toastService.showToast('تأكد من اتصالك بالإنترنت', 'error');
+        toastService.showToast(
+          'يوجد مشكلة بالسيرفر .. الرجاء المحاولة لاحقا',
+          'error'
+        );
+      }
+
+      if (!navigator.onLine) {
+        toastService.showToast(
+          'لا يوجد اتصال بالإنترنت .. الرجاء التحقق من الاتصال',
+          'error'
+        );
       }
 
       return throwError(() => new Error(httpError.message || 'ERROR'));

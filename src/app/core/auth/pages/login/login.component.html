@@ -1,10 +1,21 @@
 <main class="min-h-screen grid place-items-center">
   <div class="container mx-auto px-4">
-    <h1 class="text-5xl font-bold mb-8">أهلا بك مجددا</h1>
-
+    <div class="mb-8">
+      <h1 class="text-5xl font-bold">أهلا بك مجددا</h1>
+      <p class="mt-2 font-semibold">
+        ليس لديك حساب؟
+        <a
+          routerLink="/auth/register"
+          class="underline text-base hover:opacity-70 transition-opacity"
+          >أنشئ واحدا الأن</a
+        >
+      </p>
+    </div>
     <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="max-w-sm">
       <fieldset class="fieldset">
-        <legend class="fieldset-legend text-xl">بريدك الإلكتروني</legend>
+        <legend class="fieldset-legend text-xl">
+          إسم المستخدم أو بريدك الإلكتروني
+        </legend>
         <input
           type="email"
           class="input w-full text-lg"
@@ -12,7 +23,7 @@
           formControlName="identifier"
         />
         <p class="fieldset-label text-lg">
-          يجب أن يكون من نوع gmail, outlook او yahoo
+          بريدك الإلكتروني يجب أن يكون من نوع gmail, outlook او yahoo
         </p>
       </fieldset>
 

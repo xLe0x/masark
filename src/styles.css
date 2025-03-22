@@ -2,6 +2,15 @@
 
 body {
   font-family: "Handjet", sans-serif;
+  cursor: url("/assets/images/arrows/Arrow3.png"), auto;
+}
+
+input {
+  outline-color: transparent;
+  cursor: url("/assets/images/arrows/Text1.png"), auto;
+}
+input.ng-invalid.ng-touched {
+  border: 1px solid red;
 }
 
 @import "tailwindcss";

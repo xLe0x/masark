@@ -7,12 +7,12 @@ import {
 } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import { ToastService } from '../../../../shared/services/toast.service';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { LoginResponse } from '../../models/login.model';
 import { StorageService } from '../../../../shared/services/storage.service';
 @Component({
   selector: 'app-login',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, RouterLink],
   templateUrl: './login.component.html',
   styles: [],
 })
@@ -25,7 +25,7 @@ export class LoginComponent {
   private storageService = inject(StorageService);
   loginForm = new FormGroup({
     identifier: new FormControl('', {
-      validators: [Validators.required, Validators.email],
+      validators: [Validators.required, Validators.minLength(2)],
       nonNullable: true,
     }),
     password: new FormControl('', {
