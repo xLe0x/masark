@@ -87,7 +87,7 @@
       @for (user of users.slice(3); let idx = $index;track user.username) {
       <a
         [routerLink]="['/profile', user.username]"
-        class="bg-amber-100 rounded-lg px-4 py-6 w-2/3 mx-auto flex items-center justify-between"
+        class="bg-base-300 rounded-lg px-4 py-6 w-2/3 mx-auto flex items-center justify-between"
       >
         <div class="flex items-center justify-center gap-4">
           <p class="font-bold text-2xl">#{{ idx + 4 }}</p>
