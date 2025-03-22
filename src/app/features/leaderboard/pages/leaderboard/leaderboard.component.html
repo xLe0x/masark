@@ -5,12 +5,15 @@
 <main class="min-h-screen sm:pt-16 pb-16">
   <div class="container mx-auto my-8 px-4 sm:px-0 h-full">
     <h1 class="text-4xl pb-8 mb-20 sm:mb-0 text-center">قائمة المتصدرين</h1>
-    @if(users) {
+    @if(users.length > 0) {
 
     <div
       class="flex flex-col sm:flex-row gap-24 mx-auto w-full items-center justify-center mb-8 sm:mb-0"
     >
-      <div class="second order-2 sm:mt-32 relative">
+      <a
+        [routerLink]="['/profile', users[1].username]"
+        class="second order-2 sm:mt-32 relative"
+      >
         <p class="text-2xl absolute -top-20 -translate-x-1/2">المركز الثاني</p>
         <div class="flex items-center justify-center flex-col">
           <img
@@ -24,8 +27,11 @@
             <p>عدد النقاط {{ users[1].xp }}</p>
           </div>
         </div>
-      </div>
-      <div class="first order-1 sm:order-2 relative">
+      </a>
+      <a
+        [routerLink]="['/profile', users[0].username]"
+        class="first order-1 sm:order-2 relative"
+      >
         <img
           src="/assets/images/crowns/star.png"
           alt=""
@@ -53,8 +59,11 @@
           alt=""
           class="absolute top-0 -right-12 animate-pulse w-10"
         />
-      </div>
-      <div class="third order-3 sm:mt-32 relative">
+      </a>
+      <a
+        [routerLink]="['/profile', users[2].username]"
+        class="third order-3 sm:mt-32 relative"
+      >
         <p class="text-2xl absolute -top-20 -translate-x-1/2">المركز الثالث</p>
 
         <div class="flex items-center justify-center flex-col">
@@ -69,14 +78,15 @@
             <p>عدد النقاط {{ users[2].xp }}</p>
           </div>
         </div>
-      </div>
+      </a>
     </div>
 
     <div
       class="w-full sm:mt-24 flex flex-col items-center justify-center gap-4"
     >
       @for (user of users.slice(3); let idx = $index;track user.username) {
-      <div
+      <a
+        [routerLink]="['/profile', user.username]"
         class="bg-amber-100 rounded-lg px-4 py-6 w-2/3 mx-auto flex items-center justify-between"
       >
         <div class="flex items-center justify-center gap-4">
@@ -84,8 +94,26 @@
           <h3 class="text-3xl">{{ user.username }}</h3>
         </div>
         <p>{{ user.xp }}</p>
-      </div>
+      </a>
       }
+    </div>
+    } @else {
+    <div
+      class="flex flex-col gap-12 mx-auto w-full items-center justify-center mb-8 sm:mb-0"
+    >
+      <div class="flex items-center justify-center gap-12">
+        <div class="skeleton w-48 h-56 mt-24"></div>
+        <div class="skeleton w-48 h-56"></div>
+        <div class="skeleton w-48 h-56 mt-24"></div>
+      </div>
+
+      <div class="w-full gap-8 flex flex-col">
+        <div class="skeleton w-2/3 h-32 mx-auto"></div>
+        <div class="skeleton w-2/3 h-32 mx-auto"></div>
+        <div class="skeleton w-2/3 h-32 mx-auto"></div>
+        <div class="skeleton w-2/3 h-32 mx-auto"></div>
+        <div class="skeleton w-2/3 h-32 mx-auto"></div>
+      </div>
     </div>
     }
   </div>

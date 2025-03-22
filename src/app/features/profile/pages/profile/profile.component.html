@@ -1,0 +1,36 @@
+<app-navbar />
+<main class="min-h-screen pt-16">
+  <div class="container mx-auto my-8 px-4 sm:px-0">
+    <!-- <a class="btn btn-circle"
+      ><svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke-width="1.5"
+        stroke="currentColor"
+        class="size-6"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18"
+        />
+      </svg>
+    </a> -->
+    @if(user()) {
+    <div class="flex items-center justify-center flex-col">
+      <img
+        [src]="user()?.avatar"
+        [alt]="'شخصية ' + user()?.username"
+        class="pixel-border"
+      />
+      <div class="mt-12 text-center">
+        <p class="text-3xl font-semibold">{{ user()?.username }}</p>
+        <p class="text-lg">المستوي الحالي: {{ user()?.level }}</p>
+        <p class="text-lg">عدد النقاط {{ user()?.xp }}</p>
+      </div>
+    </div>
+
+    }
+  </div>
+</main>

@@ -1,13 +1,12 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
 import { NavbarComponent } from '../../../../core/layout/components/navbar/navbar.component';
-import { UserService } from '../../../../core/auth/services/user.service';
-import { User, UserResponse } from '../../../../core/auth/models/user.model';
 import { LeaderboardService } from '../../services/leaderboard.service';
 import { ILeaderboard, ILeaderboardUser } from '../../models/leaderboard.model';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-leaderboard',
-  imports: [NavbarComponent],
+  imports: [NavbarComponent, RouterLink],
   templateUrl: './leaderboard.component.html',
   styles: ``,
 })
