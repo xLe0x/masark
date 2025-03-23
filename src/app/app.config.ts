@@ -1,4 +1,8 @@
-import { ApplicationConfig, provideZoneChangeDetection } from '@angular/core';
+import {
+  ApplicationConfig,
+  provideExperimentalZonelessChangeDetection,
+  provideZoneChangeDetection,
+} from '@angular/core';
 import { provideRouter, withComponentInputBinding } from '@angular/router';
 
 import { routes } from './app.routes';
@@ -9,7 +13,7 @@ import { apiErrorsInterceptor } from './shared/interceptors/api-errors.intercept
 
 export const appConfig: ApplicationConfig = {
   providers: [
-    provideZoneChangeDetection({ eventCoalescing: true }),
+    // provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes, withComponentInputBinding()),
     provideHttpClient(
       withInterceptors([authInterceptor, apiErrorsInterceptor])
@@ -17,5 +21,6 @@ export const appConfig: ApplicationConfig = {
     provideHotToastConfig({
       position: 'top-right',
     }),
+    provideExperimentalZonelessChangeDetection(),
   ],
 };

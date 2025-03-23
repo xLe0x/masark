@@ -1,22 +1,6 @@
 <app-navbar />
 <main class="min-h-screen pt-16">
   <div class="container mx-auto my-8 px-4 sm:px-0">
-    <!-- <a class="btn btn-circle"
-      ><svg
-        xmlns="http://www.w3.org/2000/svg"
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke-width="1.5"
-        stroke="currentColor"
-        class="size-6"
-      >
-        <path
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18"
-        />
-      </svg>
-    </a> -->
     @if(user()) {
     <div class="flex items-center justify-center flex-col">
       <img
@@ -26,11 +10,40 @@
       />
       <div class="mt-12 text-center">
         <p class="text-3xl font-semibold">{{ user()?.username }}</p>
-        <p class="text-lg">المستوي الحالي: {{ user()?.level }}</p>
-        <p class="text-lg">عدد النقاط {{ user()?.xp }}</p>
+        <div class="flex items-center justify-center gap-4">
+          <div
+            class="flex flex-col items-center justify-center p-4 rounded-lg border border-base-300"
+          >
+            <p class="text-2xl">{{ user()?.level }}</p>
+            <p class="">المستوى الحالي</p>
+          </div>
+          <div
+            class="flex flex-col items-center justify-center p-4 rounded-lg border border-base-300"
+          >
+            <p class="text-2xl">{{ user()?.xp }}</p>
+            <p>النقاط الحالية</p>
+          </div>
+        </div>
+        <div class="flex items-center justify-center gap-2">
+          <p class="text-lg">{{ user()?.xp }}</p>
+          <progress
+            class="progress w-full sm:w-56 mx-2"
+            [value]="user()?.xp"
+            [max]="user()?.nextLevelXp"
+          ></progress>
+          <p class="text-lg">{{ user()?.nextLevelXp }}</p>
+        </div>
       </div>
     </div>
-
+    } @else {
+    <div class="flex flex-col items-center justify-center gap-4">
+      <div class="skeleton w-48 h-56"></div>
+      <div class="flex items-center justify-center gap-2">
+        <div class="skeleton w-24 h-24"></div>
+        <div class="skeleton w-24 h-24"></div>
+      </div>
+      <div class="skeleton w-2/3 h-8"></div>
+    </div>
     }
   </div>
 </main>

@@ -129,15 +129,20 @@
       @for (user of users.slice(3); let idx = $index;track user.username) {
       <a
         [routerLink]="['/profile', user.username]"
-        class="bg-base-300 rounded-lg px-4 py-6 w-2/3 mx-auto flex items-center justify-between"
+        class="bg-base-300 rounded-lg px-4 py-6 w-2/3 mx-auto flex flex-col sm:flex-row items-center justify-between"
       >
         <div class="flex items-center justify-center gap-4">
           <p class="font-bold text-2xl">#{{ idx + 4 }}</p>
           <h3 class="text-3xl">{{ user.username }}</h3>
         </div>
-        <p class="px-2 text-lg rounded-sm border border-white">
-          {{ user.xp }} نقاط
-        </p>
+        <div class="flex items-center justify-between mt-4 sm:mt-0 gap-4">
+          <p class="px-2 text-lg rounded-sm border border-white">
+            {{ user.xp }} نقاط
+          </p>
+          <p class="px-2 text-lg rounded-sm border border-white">
+            المستوي {{ user.level }}
+          </p>
+        </div>
       </a>
       }
     </div>
