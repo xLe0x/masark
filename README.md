@@ -1,43 +1,43 @@
-# مشروع مسارك
+# Masark Project
 
-مشروع **مسارك** هو نظام **قائمة مهام (Todo List)** مبتكر وممتع. يتميز المشروع بتقديم تجربة فريدة من خلال دمج عناصر الألعاب مثل المستويات (Levels)، الشخصيات (Characters)، ولوحة المتصدرين (Leaderboard) في بيئة ثنائية الأبعاد (2D) بأسلوب Pixel Art.
+The **Masark** project is an innovative and fun **Todo List** system. It offers a unique experience by integrating game elements such as Levels, Characters, and a Leaderboard in a 2D environment with Pixel Art style.
 
-## المميزات
+## Features
 
-- **إدارة المهام**: إضافة، تعديل، وحذف المهام بسهولة.
-- **نظام المستويات**: تقدم في المستويات بناءً على إنجاز المهام.
-- **الشخصيات**: تخصيص شخصيتك داخل التطبيق.
-- **لوحة المتصدرين**: تنافس مع الآخرين بناءً على إنجازاتك.
-- **تصميم ممتع**: واجهة ثنائية الأبعاد بأسلوب Pixel Art.
+- **Task Management**: Easily add, edit, and delete tasks.
+- **Level System**: Progress through levels based on task completion.
+- **Characters**: Customize your character within the app.
+- **Leaderboard**: Compete with others based on your achievements.
+- **Fun Design**: A 2D interface with Pixel Art style.
 
-## المتطلبات
+## Requirements
 
-- Node.js (الإصدار 14 أو أحدث).
-- Angular CLI مثبت على الجهاز.
+- Node.js (version 14 or later).
+- Angular CLI installed on your machine.
 
-## كيفية البدء
+## Getting Started
 
-1. قم باستنساخ المستودع إلى جهازك:
+1. Clone the repository to your local machine:
    ```bash
-   git clone <رابط المستودع>
+   git clone <repository-link>
    ```
-2. انتقل إلى مجلد المشروع:
+2. Navigate to the project directory:
    ```bash
    cd masark
    ```
-3. قم بتثبيت التبعيات:
+3. Install dependencies:
    ```bash
    npm install
    ```
-4. شغل التطبيق:
+4. Run the application:
    ```bash
    ng serve
    ```
 
-## المساهمة
+## Contribution
 
-نرحب بجميع المساهمات لتحسين المشروع. يمكنك فتح طلب سحب (Pull Request) أو الإبلاغ عن مشكلة (Issue) في صفحة المستودع.
+We welcome all contributions to improve the project. You can open a Pull Request or report an Issue on the repository page.
 
-## الترخيص
+## License
 
-هذا المشروع مرخص تحت [اسم الترخيص]، يرجى مراجعة ملف `LICENSE` لمزيد من التفاصيل.
+This project is licensed under [License Name]. Please check the `LICENSE` file for more details.
