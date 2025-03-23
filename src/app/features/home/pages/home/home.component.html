@@ -3,47 +3,68 @@
 <app-navbar />
 
 <main class="min-h-screen pt-16">
-  <div class="container mx-auto my-8 px-4 sm:px-0">
+  <div
+    class="container mx-auto flex items-center justify-center sm:block my-8 px-4 sm:px-0"
+  >
     @if(user) {
-    <!-- <h1 class="text-5xl font-bold">أهلا بك يا {{ user?.username }} 👋</h1> -->
-
-    <div class="charachter-card flex flex-col sm:flex-row gap-4">
+    <div class="flex flex-col items-center justify-center sm:flex-row gap-4">
       @if(user.avatar) {
       <div class="pixel-border rounded w-fit">
-        <img [src]="user?.avatar" [alt]="'character of level ' + user?.level" />
+        <img [src]="user.avatar" [alt]="'شخصية من المستوي ' + user?.level" />
       </div>
       } @else {
-      <div class="skeleton h-56 w-32"></div>
+      <div class="skeleton h-72 w-64">
+        <img
+          class="w-full h-full"
+          src="https://placehold.co/256x288/transparent/F00"
+        />
+      </div>
       }
       <div
         class="space-y-8 mt-8 sm:mt-0 flex flex-col items-start justify-between"
       >
-        <div class="space-y-2">
-          <h2 class="text-3xl font-bold">{{ user.username }}</h2>
-          <p>المستوى: {{ user.level }}</p>
-          <p>النقاط الحالية: {{ user.xp }}</p>
+        <div class="space-y-6">
+          <h2 class="text-5xl font-bold text-center sm:text-start">
+            {{ user.username }}
+          </h2>
+          <div class="flex items-center gap-4">
+            <div
+              class="flex flex-col items-center justify-center p-4 rounded-lg border border-base-300"
+            >
+              <p class="text-2xl">{{ user.level }}</p>
+              <p class="">المستوى الحالي</p>
+            </div>
+            <div
+              class="flex flex-col items-center justify-center p-4 rounded-lg border border-base-300"
+            >
+              <p class="text-2xl">{{ user.xp }}</p>
+              <p>النقاط الحالية</p>
+            </div>
+          </div>
         </div>
-        <div>
-          <span>{{ user.xp }}</span>
+        <div class="flex items-center justify-between gap-2">
+          <p class="text-lg">{{ user.xp }}</p>
           <progress
-            class="progress w-36 sm:w-56 mx-2"
-            [value]="user.xp + 30"
+            class="progress w-full sm:w-56 mx-2"
+            [value]="user.xp"
             [max]="user.nextLevelXp"
           ></progress>
-          <span>{{ user.nextLevelXp }}</span>
+          <p class="text-lg">{{ user.nextLevelXp }}</p>
         </div>
       </div>
     </div>
     } @else {
-    <div class="charachter-card flex flex-col sm:flex-row gap-4">
+    <div class="flex flex-col items-center justify-center sm:flex-row gap-4">
       <div class="">
-        <div class="skeleton h-44 w-32"></div>
+        <div class="skeleton h-64 w-56"></div>
       </div>
       <div class="space-y-8 flex flex-col items-start justify-between">
-        <div class="space-y-2">
-          <h2 class="skeleton w-24 h-8"></h2>
-          <p class="skeleton w-16 h-4"></p>
-          <p class="skeleton w-16 h-4"></p>
+        <div class="space-y-4">
+          <h2 class="skeleton w-28 h-8"></h2>
+          <div class="flex items-center justify-center gap-2">
+            <p class="skeleton w-20 h-20"></p>
+            <p class="skeleton w-20 h-20"></p>
+          </div>
         </div>
         <div class="flex items-center justify-center gap-2">
           <p class="skeleton w-4 h-4 rounded"></p>
@@ -55,7 +76,6 @@
         </div>
       </div>
     </div>
-
     }
   </div>
 </main>

@@ -14,7 +14,9 @@
     <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="max-w-sm">
       <fieldset class="fieldset">
         <legend class="fieldset-legend text-xl">إسم المستخدم</legend>
+        <label for="username" class="hidden sr-only">إسم المستخدم</label>
         <input
+          name="username"
           type="text"
           class="input w-full text-lg"
           formControlName="username"
@@ -26,7 +28,9 @@
       </fieldset>
       <fieldset class="fieldset">
         <legend class="fieldset-legend text-xl">بريدك الإلكتروني</legend>
+        <label for="email" class="hidden sr-only">بريدك الإلكتروني</label>
         <input
+          name="email"
           type="email"
           class="input w-full text-lg"
           dir="ltr"
@@ -39,7 +43,9 @@
 
       <fieldset class="fieldset">
         <legend class="fieldset-legend text-xl">كلمة المرور</legend>
+        <label for="password" class="hidden sr-only">كلمة المرور</label>
         <input
+          name="password"
           type="password"
           class="input w-full text-lg"
           dir="ltr"
