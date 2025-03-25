@@ -10,15 +10,17 @@
     <div class="flex flex-col items-center justify-center sm:flex-row gap-4">
       @if(user.avatar) {
       <div class="pixel-border rounded w-fit">
-        <img [src]="user.avatar" [alt]="'شخصية من المستوي ' + user?.level" />
-      </div>
-      } @else {
-      <div class="skeleton h-72 w-64">
         <img
+          [ngSrc]="user.avatar"
+          width="200"
+          height="200"
           class="w-full h-full"
-          src="https://placehold.co/256x288/transparent/F00"
+          priority="true"
+          [alt]="'شخصية من المستوي ' + user?.level"
         />
       </div>
+      } @else {
+      <div class="skeleton h-52 w-52 pixel-border"></div>
       }
       <div
         class="space-y-8 mt-8 sm:mt-0 flex flex-col items-start justify-between"

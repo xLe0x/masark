@@ -2,10 +2,11 @@ import { Component, inject, signal } from '@angular/core';
 import { NavbarComponent } from '../../../../core/layout/components/navbar/navbar.component';
 import { User, UserResponse } from '../../../../core/auth/models/user.model';
 import { UserService } from '../../../../core/auth/services/user.service';
+import { NgOptimizedImage } from '@angular/common';
 
 @Component({
   selector: 'app-home',
-  imports: [NavbarComponent],
+  imports: [NavbarComponent, NgOptimizedImage],
   templateUrl: './home.component.html',
   styles: ``,
 })
